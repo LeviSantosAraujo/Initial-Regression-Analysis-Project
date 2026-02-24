@@ -6,11 +6,12 @@ This project performs linear regression analysis on 2024 data from Raw Data.xlsx
 
 1. Ensure you have Python installed.
 2. Install dependencies: `pip install -r requirements.txt`
-3. Run the script: `python regression.py`
+3. Place your data file as `Raw Data.xlsx` in the project directory (sample outputs are included for reference).
+4. Run the script: `python regression.py`
 
 ## Data
 
-The data is filtered for the year 2024. Features include Units Sold, Market Share, etc., and the target is Revenue ($).
+The data should be in Excel format with columns for Year, Quarter, Product Model, etc. The script filters for 2024 data. Features include Units Sold, Market Share, etc., and the target is Revenue ($).
 
 ## Output
 
