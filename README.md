@@ -27,4 +27,4 @@ Use a Gmail app password for EMAIL_PASSWORD (not your regular password). Enable 
 ## Troubleshooting
 
 - Ensure Raw Data.xlsx is in the same directory.
-- For email, use a Gmail app password and update sender details in `send_email.py`.
+- For email, use a Gmail app password and update sender details in `send_email.py`.# Initial-Regression-Analysis-Project
