@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regression Analysis Report - 2024 Data</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        h1 { color: #333; text-align: center; }
+        h2 { color: #555; border-bottom: 2px solid #007bff; padding-bottom: 5px; }
+        p { line-height: 1.6; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background-color: white; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #007bff; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        .highlight { background-color: #e9ecef; font-weight: bold; }
+        .positive { color: green; }
+        .negative { color: red; }
+        .container { max-width: 1200px; margin: auto; background-color: white; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        img { max-width: 100%; height: auto; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Regression Analysis Report - 2024 Data</h1>
+        
+        <h2>Executive Summary</h2>
+        <p>This report presents a linear regression analysis predicting Revenue ($) based on key 5G-related metrics for 2024 data.</p>
+        
+        <h2>Dataset Overview</h2>
+        <ul>
+            <li><strong>Source:</strong> Raw Data.xlsx</li>
+            <li><strong>Filtered for Year:</strong> 2024</li>
+            <li><strong>Total Samples:</strong> 157</li>
+            <li><strong>Target Variable:</strong> Revenue ($)</li>
+            <li><strong>Features:</strong> Units Sold, Market Share (%), Regional 5G Coverage (%), 5G Subscribers (millions), Avg 5G Speed (Mbps), Preference for 5G (%)</li>
+            <li><strong>Test Set Size:</strong> 32 samples (20.4% of data)</li>
+        </ul>
+        
+        <h2>Data Summary</h2>
+        <table border="1" class="dataframe table table-striped">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Units Sold</th>
+      <th>Market Share (%)</th>
+      <th>Regional 5G Coverage (%)</th>
+      <th>5G Subscribers (millions)</th>
+      <th>Avg 5G Speed (Mbps)</th>
+      <th>Preference for 5G (%)</th>
+      <th>Revenue ($)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>157.000000</td>
+      <td>157.000000</td>
+      <td>157.000000</td>
+      <td>157.000000</td>
+      <td>157.000000</td>
+      <td>157.000000</td>
+      <td>1.570000e+02</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>31303.636943</td>
+      <td>3.822102</td>
+      <td>67.130828</td>
+      <td>28.860255</td>
+      <td>191.665924</td>
+      <td>67.810573</td>
+      <td>3.222561e+07</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>15850.702689</td>
+      <td>1.962638</td>
+      <td>19.160320</td>
+      <td>14.763590</td>
+      <td>68.915269</td>
+      <td>17.070269</td>
+      <td>1.626076e+07</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>5564.000000</td>
+      <td>-0.120000</td>
+      <td>27.940000</td>
+      <td>0.340000</td>
+      <td>51.730000</td>
+      <td>38.070000</td>
+      <td>4.494602e+06</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>18938.000000</td>
+      <td>2.720000</td>
+      <td>48.750000</td>
+      <td>16.980000</td>
+      <td>130.550000</td>
+      <td>51.790000</td>
+      <td>2.138715e+07</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>31220.000000</td>
+      <td>3.620000</td>
+      <td>68.380000</td>
+      <td>29.050000</td>
+      <td>196.330000</td>
+      <td>72.090000</td>
+      <td>3.093046e+07</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>42266.000000</td>
+      <td>5.680000</td>
+      <td>84.260000</td>
+      <td>41.660000</td>
+      <td>256.140000</td>
+      <td>84.080000</td>
+      <td>4.340086e+07</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>64381.000000</td>
+      <td>6.920000</td>
+      <td>103.820000</td>
+      <td>54.480000</td>
+      <td>296.750000</td>
+      <td>94.430000</td>
+      <td>8.202514e+07</td>
+    </tr>
+  </tbody>
+</table>
+        
+        <h2>Feature Correlations with Revenue</h2>
+        <table border="1" class="dataframe table table-striped">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Revenue ($)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Units Sold</th>
+      <td>-0.011610</td>
+    </tr>
+    <tr>
+      <th>Market Share (%)</th>
+      <td>0.082108</td>
+    </tr>
+    <tr>
+      <th>Regional 5G Coverage (%)</th>
+      <td>-0.151943</td>
+    </tr>
+    <tr>
+      <th>5G Subscribers (millions)</th>
+      <td>0.220329</td>
+    </tr>
+    <tr>
+      <th>Avg 5G Speed (Mbps)</th>
+      <td>-0.001601</td>
+    </tr>
+    <tr>
+      <th>Preference for 5G (%)</th>
+      <td>0.046550</td>
+    </tr>
+  </tbody>
+</table>
+        
+        <h2>Model Performance</h2>
+        <ul>
+            <li><strong>Mean Squared Error:</strong> 245565493936408.41</li>
+            <li><strong>R-squared:</strong> 0.0861 (Explains 8.6% of variance in revenue)</li>
+        </ul>
+        
+        <h2>Model Coefficients</h2>
+        <p><strong>Intercept:</strong> 27434906.2963</p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Coefficient</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>Units Sold</td>
+                    <td class="negative">-39.6346</td>
+                </tr>
+
+                <tr>
+                    <td>Market Share (%)</td>
+                    <td class="positive">292258.1064</td>
+                </tr>
+
+                <tr>
+                    <td>Regional 5G Coverage (%)</td>
+                    <td class="negative">-83175.0825</td>
+                </tr>
+
+                <tr>
+                    <td>5G Subscribers (millions)</td>
+                    <td class="positive">221514.9373</td>
+                </tr>
+
+                <tr>
+                    <td>Avg 5G Speed (Mbps)</td>
+                    <td class="positive">8449.2095</td>
+                </tr>
+
+                <tr>
+                    <td>Preference for 5G (%)</td>
+                    <td class="positive">44679.9563</td>
+                </tr>
+
+            </tbody>
+        </table>
+        
+        <h2>Interpretation</h2>
+        <ul>
+            <li class="positive">Positive coefficients indicate features that increase revenue when they increase.</li>
+            <li class="negative">Negative coefficients indicate features that decrease revenue when they increase.</li>
+            <li>The model's R-squared indicates moderate predictive power; consider additional features or non-linear models for improvement.</li>
+        </ul>
+        
+        <h2>Recommendations</h2>
+        <ul>
+            <li>Focus on high-impact features like Market Share and 5G Subscribers to boost revenue.</li>
+            <li>Monitor Regional 5G Coverage as it may negatively impact revenue.</li>
+            <li>Validate model with additional data or cross-validation for robustness.</li>
+        </ul>
+        
+        <h2>Actual vs Predicted Revenue</h2>
+        <img src="regression_plot.png" alt="Actual vs Predicted Revenue Plot">
+        
+        <p><em>Generated on: February 24, 2026</em></p>
+    </div>
+</body>
+</html>

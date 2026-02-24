@@ -1,0 +1,58 @@
+
+Regression Analysis Report - 2024 Data
+======================================
+
+Executive Summary:
+This report presents a linear regression analysis predicting Revenue ($) based on key 5G-related metrics for 2024 data.
+
+Dataset Overview:
+- Source: Raw Data.xlsx
+- Filtered for Year: 2024
+- Total Samples: 157
+- Target Variable: Revenue ($)
+- Features: Units Sold, Market Share (%), Regional 5G Coverage (%), 5G Subscribers (millions), Avg 5G Speed (Mbps), Preference for 5G (%)
+- Test Set Size: 32 samples (20.4% of data)
+
+Data Summary:
+         Units Sold  Market Share (%)  Regional 5G Coverage (%)  5G Subscribers (millions)  Avg 5G Speed (Mbps)  Preference for 5G (%)   Revenue ($)
+count    157.000000        157.000000                157.000000                 157.000000           157.000000             157.000000  1.570000e+02
+mean   31303.636943          3.822102                 67.130828                  28.860255           191.665924              67.810573  3.222561e+07
+std    15850.702689          1.962638                 19.160320                  14.763590            68.915269              17.070269  1.626076e+07
+min     5564.000000         -0.120000                 27.940000                   0.340000            51.730000              38.070000  4.494602e+06
+25%    18938.000000          2.720000                 48.750000                  16.980000           130.550000              51.790000  2.138715e+07
+50%    31220.000000          3.620000                 68.380000                  29.050000           196.330000              72.090000  3.093046e+07
+75%    42266.000000          5.680000                 84.260000                  41.660000           256.140000              84.080000  4.340086e+07
+max    64381.000000          6.920000                103.820000                  54.480000           296.750000              94.430000  8.202514e+07
+
+Feature Correlations with Revenue:
+Units Sold                  -0.011610
+Market Share (%)             0.082108
+Regional 5G Coverage (%)    -0.151943
+5G Subscribers (millions)    0.220329
+Avg 5G Speed (Mbps)         -0.001601
+Preference for 5G (%)        0.046550
+
+Model Performance:
+- Mean Squared Error: 245565493936408.41
+- R-squared: 0.0861 (Explains 8.6% of variance in revenue)
+
+Model Coefficients:
+Intercept: 27434906.2963
+Units Sold: -39.6346
+Market Share (%): 292258.1064
+Regional 5G Coverage (%): -83175.0825
+5G Subscribers (millions): 221514.9373
+Avg 5G Speed (Mbps): 8449.2095
+Preference for 5G (%): 44679.9563
+
+Interpretation:
+- Positive coefficients indicate features that increase revenue when they increase.
+- Negative coefficients indicate features that decrease revenue when they increase.
+- The model's R-squared indicates moderate predictive power; consider additional features or non-linear models for improvement.
+
+Recommendations:
+- Focus on high-impact features like Market Share and 5G Subscribers to boost revenue.
+- Monitor Regional 5G Coverage as it may negatively impact revenue.
+- Validate model with additional data or cross-validation for robustness.
+
+Generated on: February 24, 2026
