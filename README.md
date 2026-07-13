@@ -11,7 +11,15 @@ This project performs linear regression analysis on 2024 data from Raw Data.xlsx
 
 ## Data
 
-The data should be in Excel format with columns for Year, Quarter, Product Model, etc. The script filters for 2024 data. Features include Units Sold, Market Share, etc., and the target is Revenue ($).
+The data should be in Excel format with a Year column for filtering. The script filters for 2024 data and uses the following features:
+- Units Sold
+- Market Share (%)
+- Regional 5G Coverage (%)
+- 5G Subscribers (millions)
+- Avg 5G Speed (Mbps)
+- Preference for 5G (%)
+
+The target variable is Revenue ($).
 
 ## Output
 
@@ -20,10 +28,12 @@ The script prints a summary, saves a detailed Excel report to `regression_report
 ## Email Feature
 
 To send the report and chart via email:
-1. Set environment variables: `export EMAIL_SENDER='your_email@gmail.com'` and `export EMAIL_PASSWORD='your_app_password'`
-2. Run: `python send_email.py`
+1. Enable 2-factor authentication on your Gmail account
+2. Generate an App Password at https://myaccount.google.com/apppasswords
+3. Set environment variables: `export EMAIL_SENDER='your_email@gmail.com'` and `export EMAIL_PASSWORD='your_app_password'`
+4. Run: `python send_email.py`
 
-Use a Gmail app password for EMAIL_PASSWORD (not your regular password). Enable "Less secure app access" if needed.
+Use a Gmail app password for EMAIL_PASSWORD (not your regular password).
 
 ## Troubleshooting
 
